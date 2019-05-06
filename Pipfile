@@ -12,6 +12,10 @@ jupytext = "*"
 numpy = "*"
 matplotlib = "*"
 pandas = "*"
+jupyter-contrib-nbextensions = {file = "https://github.com/ipython-contrib/IPython-notebook-extensions/archive/master.zip"}
+mlxtend = "*"
+pyquery = "*"
+selenium = "*"
 
 [requires]
 python_version = "3.7"
