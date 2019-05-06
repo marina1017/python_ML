@@ -83,9 +83,9 @@ users = [
     ]
 
 def insert_brands_to_db(db_file_name, code_range):
-    print("brands_generator(code_range)",brands_generator(code_range))
-  #conn = sqlite3.connect(db_file_name)
-  #with conn:
+  print("brands_generator(code_range)",brands_generator(code_range))
+  conn = sqlite3.connect(db_file_name)
+  with conn:
     #sql = 'INSERT INTO brands(code,name,short_name,market,unit,sector) ' \'VALUES(?,?,?,?,?,?)'
 
     #print(users)
@@ -93,13 +93,12 @@ def insert_brands_to_db(db_file_name, code_range):
     #conn.executemany(sql, brands_generator(code_range))
     #conn.executemany(sql, users)
     
-    conn = sqlite3.connect('brands')
-    #c = conn.cursor()
-    
-    #sql = 'INSERT INTO brands(code,name,short_name,market,unit,sector) ' 
-    conn.executemany("insert into brands values (?,?,?,?,?,?)" , brands_generator(code_range))
+    #conn = sqlite3.connect('brands')
+    #conn = sqlite3.connect(db_file_name)
+    sql = "insert into brands values (?,?,?,?,?,?)"
+    conn.executemany(sql, brands_generator(code_range))
     conn.commit()
     conn.close()
 
 ## 実行
-insert_brands_to_db('brand', range(1301,1303))
+insert_brands_to_db('brands', range(1301,1303))
