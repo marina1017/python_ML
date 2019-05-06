@@ -69,36 +69,17 @@ def get_brand(code):
 def brands_generator(code_range):
   print("test",code_range)
   for code in code_range:
-    print("code",code)
-    print("get_brand(code)",get_brand(code))
     brand = get_brand(code)
     if brand:
-      print("brand",brand)
       yield brand
-    #time.sleep(1)
-
-users = [
-    ('1', 'name', 'shortname', 'market', 'java', 1),
-    ('2', 'name', 'shortname', 'market', 'java', 1),
-    ]
+    time.sleep(1)
 
 def insert_brands_to_db(db_file_name, code_range):
   print("brands_generator(code_range)",brands_generator(code_range))
   conn = sqlite3.connect(db_file_name)
   with conn:
-    #sql = 'INSERT INTO brands(code,name,short_name,market,unit,sector) ' \'VALUES(?,?,?,?,?,?)'
-
-    #print(users)
-    #print(conn)
-    #conn.executemany(sql, brands_generator(code_range))
-    #conn.executemany(sql, users)
-    
-    #conn = sqlite3.connect('brands')
-    #conn = sqlite3.connect(db_file_name)
     sql = "insert into brands values (?,?,?,?,?,?)"
     conn.executemany(sql, brands_generator(code_range))
-    conn.commit()
-    conn.close()
 
 ## 実行
 insert_brands_to_db('brands', range(1301,1303))
